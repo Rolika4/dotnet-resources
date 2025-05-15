@@ -1,0 +1,1 @@
+1. Application dotnet-resources has been successfully deployed!!
