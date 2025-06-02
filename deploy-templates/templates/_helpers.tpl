@@ -1,7 +1,7 @@
 {{/*
 Expand the name of the chart.
 */}}
-{{- define "dotnet-resources.name" -}}
+{{- define "backend-resources.name" -}}
 {{- default .Chart.Name .Values.nameOverride | trunc 63 | trimSuffix "-" }}
 {{- end }}
 
@@ -10,7 +10,7 @@ Create a default fully qualified app name.
 We truncate at 63 chars because some Kubernetes name fields are limited to this (by the DNS naming spec).
 If release name contains chart name it will be used as a full name.
 */}}
-{{- define "dotnet-resources.fullname" -}}
+{{- define "backend-resources.fullname" -}}
 {{- if .Values.fullnameOverride }}
 {{- .Values.fullnameOverride | trunc 63 | trimSuffix "-" }}
 {{- else }}
@@ -26,16 +26,16 @@ If release name contains chart name it will be used as a full name.
 {{/*
 Create chart name and version as used by the chart label.
 */}}
-{{- define "dotnet-resources.chart" -}}
+{{- define "backend-resources.chart" -}}
 {{- printf "%s-%s" .Chart.Name .Chart.Version | replace "+" "_" | trunc 63 | trimSuffix "-" }}
 {{- end }}
 
 {{/*
 Common labels
 */}}
-{{- define "dotnet-resources.labels" -}}
-helm.sh/chart: {{ include "dotnet-resources.chart" . }}
-{{ include "dotnet-resources.selectorLabels" . }}
+{{- define "backend-resources.labels" -}}
+helm.sh/chart: {{ include "backend-resources.chart" . }}
+{{ include "backend-resources.selectorLabels" . }}
 {{- if .Chart.AppVersion }}
 app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
 {{- end }}
@@ -45,17 +45,17 @@ app.kubernetes.io/managed-by: {{ .Release.Service }}
 {{/*
 Selector labels
 */}}
-{{- define "dotnet-resources.selectorLabels" -}}
-app.kubernetes.io/name: {{ include "dotnet-resources.name" . }}
+{{- define "backend-resources.selectorLabels" -}}
+app.kubernetes.io/name: {{ include "backend-resources.name" . }}
 app.kubernetes.io/instance: {{ .Release.Name }}
 {{- end }}
 
 {{/*
 Create the name of the service account to use
 */}}
-{{- define "dotnet-resources.serviceAccountName" -}}
+{{- define "backend-resources.serviceAccountName" -}}
 {{- if .Values.serviceAccount.create }}
-{{- default (include "dotnet-resources.fullname" .) .Values.serviceAccount.name }}
+{{- default (include "backend-resources.fullname" .) .Values.serviceAccount.name }}
 {{- else }}
 {{- default "default" .Values.serviceAccount.name }}
 {{- end }}

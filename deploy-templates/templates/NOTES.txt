@@ -1,1 +1,1 @@
-1. Application dotnet-resources has been successfully deployed!!
+1. Application backend-resources has been successfully deployed!!
