@@ -46,7 +46,7 @@ service:
 
 ingress:
   enabled: false
-  dnsWildcard: development.krci-dev.cloudmentor.academy
+  dnsWildcard: example.com
   className: ""
   annotations: {}
     # kubernetes.io/ingress.class: nginx
